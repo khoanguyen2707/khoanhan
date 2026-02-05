@@ -1,22 +1,16 @@
 
-import { GoogleGenAI } from "@google/genai";
-
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
-
 export const generateLoveLetter = async (): Promise<string> => {
-  try {
-    const response = await ai.models.generateContent({
-      model: 'gemini-3-flash-preview',
-      contents: "Hãy viết một lời tỏ tình siêu ngọt ngào, lãng mạn và chân thành bằng tiếng Việt dành cho người yêu. Lời nhắn nên ngắn gọn (khoảng 2-3 câu), ấm áp và khiến họ cảm thấy đặc biệt vì đã chọn mình.",
-      config: {
-        temperature: 0.9,
-        topP: 0.95,
-      },
-    });
+  // Hard-code nội dung, không gọi Gemini / API nào hết
+  const letters: string[] = [
+    "Anh biết là em sẽ chọn anh mà. Cảm ơn em đã bước vào cuộc đời anh, biến mọi khoảnh khắc trở nên rực rỡ và đầy ý nghĩa. Anh yêu em!",
+    "Từ ngày em đến, mọi thứ trong anh đều đổi khác. Chỉ cần nghĩ đến em thôi là cả thế giới bỗng trở nên dịu dàng hơn rất nhiều.",
+    "Giữa hàng ngàn lựa chọn, anh chỉ mong em chọn mỗi mình anh. Anh hứa sẽ nắm tay em đi qua mọi vui buồn, không bao giờ buông.",
+    "Cảm ơn em vì đã xuất hiện, vì đã mỉm cười, vì đã vô tình làm trái tim anh rung động. Nếu được, anh chỉ xin một đặc quyền: được thương em cả đời.",
+  ];
 
-    return response.text || "Anh biết là em sẽ chọn anh mà. Cảm ơn em đã bước vào cuộc đời anh, biến mọi khoảnh khắc trở nên rực rỡ và đầy ý nghĩa. Anh yêu em!";
-  } catch (error) {
-    console.error("Error generating love letter:", error);
-    return "Cảm ơn em đã chọn anh. Anh hứa sẽ luôn ở bên cạnh, chăm sóc và yêu thương em bằng tất cả trái tim mình. ❤️";
-  }
+  // Giữ lại cảm giác “đang viết thư” bằng cách delay nhẹ
+  await new Promise((resolve) => setTimeout(resolve, 1500));
+
+  const index = Math.floor(Math.random() * letters.length);
+  return letters[index];
 };
