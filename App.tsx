@@ -3,7 +3,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Option, GameState } from './types';
 import { generateLoveLetter } from './services/geminiService';
 import HeartBackground from './components/HeartBackground';
-import './index.css'
+
 
 const OPTIONS: Option[] = [
   { id: '1', label: 'Một anh chàng đẹp trai nào đó', isCorrect: false },
